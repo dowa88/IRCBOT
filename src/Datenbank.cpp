@@ -60,7 +60,22 @@ void SQL::writeDB(eintrag e)
 std::vector<eintrag> SQL::readDB()
 {
     std::vector<eintrag> e;
+    sqlite3_stmt* stmt;
 
+    std::string s = "SELECT count(*) FROM " + tablename;
+    sqlite3_prepare_v2(db, s.c_str(), -1, &stmt, NULL);
+    sqlite3_step(stmt);
+
+    int rows = sqlite3_column_int(stmt, 0);
+
+    sqlite3_finalize(stmt);
+
+    for(int i = 1; i <= rows; i++)
+    {
+
+    }
+
+    return e;
 }
 
 
