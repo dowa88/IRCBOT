@@ -5,5 +5,26 @@ Datenbank.h
 Autor: Dominic Wanner
 
 Beschreibung:
+-------------
+In diesem teil des Programms ist alles enthalten um auf eine Datenbank zuzugreife und zu erstellen so wie diese zu Löschen
 */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#include <stdio.h>
+#include <sqlite3.h>
+
+
+class SQL {
+    public:
+    SQL();
+    ~SQL();
+
+    void openDB(const char name[]);
+    void readDB();
+    void writeDB();
+    void closeDB();
+
+    private:
+    sqlite3* db;
+
+};

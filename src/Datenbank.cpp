@@ -7,3 +7,33 @@ Autor: Dominic Wanner
 Beschreibung:
 */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#include "Datenbank.h"
+
+SQL::SQL()
+{
+    db = NULL;
+}
+
+SQL::~SQL()
+{
+    if(db != NULL)
+    {
+        sqlite3_close(db);
+        db = NULL;
+    }
+}
+
+void SQL::openDB(const char name[])
+{
+    sqlite3_open(name, &db);
+}
+
+void SQL::closeDB()
+{
+     if(db != NULL)
+    {
+        sqlite3_close(db);
+        db = NULL;
+    }
+}
