@@ -12,7 +12,13 @@ In diesem teil des Programms ist alles enthalten um auf eine Datenbank zuzugreif
 
 #include <stdio.h>
 #include <sqlite3.h>
+#include <string>
 
+struct eintrag
+{
+    std::string name;
+    std::string inhalt;
+};
 
 class SQL {
     public:
@@ -20,11 +26,14 @@ class SQL {
     ~SQL();
 
     void openDB(const char name[]);
+    void createTable(std::string name);
+    void deleteDB();
     void readDB();
-    void writeDB();
+    void writeDB(eintrag e);
     void closeDB();
 
     private:
     sqlite3* db;
+    std::string tablename;
 
 };
