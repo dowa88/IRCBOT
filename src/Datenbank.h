@@ -13,6 +13,7 @@ In diesem teil des Programms ist alles enthalten um auf eine Datenbank zuzugreif
 #include <stdio.h>
 #include <sqlite3.h>
 #include <string>
+#include <vector>
 
 struct eintrag
 {
@@ -28,7 +29,9 @@ class SQL {
     void openDB(const char name[]);
     void createTable(std::string name);
     void deleteDB();
-    void readDB();
+    std::vector<eintrag> readDB();
+    std::vector<eintrag> readFromTo(int fyear, int fmonth, int fday, int fhour, int fminute, int tyear, int tmonth, int tday, int thour, int tminute);
+    std::vector<eintrag> readFromToday(int fhour, int fminute, int thour, int tminute);
     void writeDB(eintrag e);
     void closeDB();
 

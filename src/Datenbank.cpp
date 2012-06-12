@@ -29,6 +29,12 @@ void SQL::openDB(const char name[])
     sqlite3_open(name, &db);
 }
 
+void SQL::deleteDB()
+{
+    std::string s = "drop table " + tablename;
+    sqlite3_exec(db, s.c_str(), NULL, NULL, NULL);
+}
+
 void SQL::createTable(std::string name)
 {
     tablename = name;
@@ -50,3 +56,27 @@ void SQL::writeDB(eintrag e)
     std::string s = "INSERT INTO " + tablename + " (name, Inhalt, Datum, Uhr) VALUES ('"+e.name+"','"+e.inhalt+"', date(), time());";
     sqlite3_exec(db, s.c_str(), NULL, NULL, NULL);
 }
+
+std::vector<eintrag> SQL::readDB()
+{
+    std::vector<eintrag> e;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
