@@ -10,6 +10,9 @@ In diesem teil des Programms ist alles enthalten um auf eine Datenbank zuzugreif
 */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#ifndef _Datenbank_H_
+#define _Datenbank_H_
+
 #include <stdio.h>
 #include <sqlite3.h>
 #include <string>
@@ -43,3 +46,5 @@ class SQL {
     std::string tablename;
 
 };
+
+#endif
