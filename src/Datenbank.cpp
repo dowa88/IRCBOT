@@ -60,24 +60,117 @@ void SQL::writeDB(eintrag e)
 std::vector<eintrag> SQL::readDB()
 {
     std::vector<eintrag> e;
-    sqlite3_stmt* stmt;
+    sqlite3_stmt *stmt;
+	std::string s = "SELECT * FROM " + tablename;
 
-    std::string s = "SELECT count(*) FROM " + tablename;
-    sqlite3_prepare_v2(db, s.c_str(), -1, &stmt, NULL);
-    sqlite3_step(stmt);
+	sqlite3_prepare_v2(db, s.c_str(), -1, &stmt, NULL);
 
-    int rows = sqlite3_column_int(stmt, 0);
+	while(sqlite3_step(stmt) != SQLITE_DONE)
+	{
+	    std::ostringstream string;
 
-    sqlite3_finalize(stmt);
+        eintrag a;
 
-    for(int i = 1; i <= rows; i++)
-    {
+        string << sqlite3_column_text(stmt, 0);
+        a.name = string.str();
+        string.str("");
 
-    }
+        string << sqlite3_column_text(stmt, 1);
+        a.inhalt = string.str();
+        string.str("");
+
+        string << sqlite3_column_text(stmt, 2);
+        a.date = string.str();
+        string.str("");
+
+        string << sqlite3_column_text(stmt, 3);
+        a.time = string.str();
+        string.str("");
+
+        e.push_back(a);
+	}
+
+	sqlite3_finalize(stmt);
 
     return e;
 }
 
+std::vector<eintrag> SQL::readFromTo(std::string fromdate, std::string fromtime, std::string todate, std::string totime)
+{
+     std::vector<eintrag> e;
+
+     sqlite3_stmt *stmt;
+     std::string s = "SELECT * FROM (SELECT * FROM " + tablename + " WHERE Datum BETWEEN '"+fromdate+"' AND '"+todate+"')" + tablename + " WHERE Uhr BETWEEN '"+fromtime+"' AND '"+totime+"'";
+
+     sqlite3_prepare_v2(db, s.c_str(), -1, &stmt, NULL);
+
+     while(sqlite3_step(stmt) != SQLITE_DONE)
+     {
+         std::ostringstream string;
+
+         eintrag a;
+
+         string << sqlite3_column_text(stmt, 0);
+         a.name = string.str();
+         string.str("");
+
+         string << sqlite3_column_text(stmt, 1);
+         a.inhalt = string.str();
+         string.str("");
+
+         string << sqlite3_column_text(stmt, 2);
+         a.date = string.str();
+         string.str("");
+
+         string << sqlite3_column_text(stmt, 3);
+         a.time = string.str();
+         string.str("");
+
+         e.push_back(a);
+     }
+     sqlite3_finalize(stmt);
+
+     return e;
+
+}
+
+std::vector<eintrag> SQL::readFromToday(std::string fromtime, std::string totime)
+{
+     std::vector<eintrag> e;
+
+     sqlite3_stmt *stmt;
+     std::string s = "SELECT * FROM (SELECT * FROM " + tablename + " WHERE Datum = date())" + tablename + " WHERE Uhr BETWEEN '"+fromtime+"' AND '"+totime+"'";
+
+     sqlite3_prepare_v2(db, s.c_str(), -1, &stmt, NULL);
+
+     while(sqlite3_step(stmt) != SQLITE_DONE)
+     {
+         std::ostringstream string;
+
+         eintrag a;
+
+         string << sqlite3_column_text(stmt, 0);
+         a.name = string.str();
+         string.str("");
+
+         string << sqlite3_column_text(stmt, 1);
+         a.inhalt = string.str();
+         string.str("");
+
+         string << sqlite3_column_text(stmt, 2);
+         a.date = string.str();
+         string.str("");
+
+         string << sqlite3_column_text(stmt, 3);
+         a.time = string.str();
+         string.str("");
+
+         e.push_back(a);
+     }
+     sqlite3_finalize(stmt);
+
+     return e;
+}
 
 
 
