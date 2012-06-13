@@ -1,10 +1,15 @@
 CC = g++
-LIBS = -lsqlite3 -lircclient 
-OBJECTS = irc_bot.o
+LIBS = -lsqlite3 -lircclient -lpthread -lnsl
+SRC += Datenbank.cpp Kommunikater.cpp
+OBJECTS = irc_bot.o $(SRC)
 NAME = ircBot
+
 
 ircBot: $(OBJECTS)
 	$(CC) -o $(NAME) $(OBJECTS) $(LIBS)
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $<
+
+clean:
+	rm *.o $(NAME)
