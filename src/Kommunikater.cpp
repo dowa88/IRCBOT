@@ -10,13 +10,25 @@ Beschreibung:
 
 #include "Kommunikater.h"
 
-void event_connect (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
+SQL* Kommunikater::Kom = new SQL();
+SQL* Kommunikater::Doc = new SQL();
+
+void Kommunikater::event_connect (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
 {
 	irc_ctx_t * ctx = (irc_ctx_t *) irc_get_ctx (session);
 	irc_cmd_join (session, ctx->channel, 0);
 }
 
+void Kommunikater::event_channel (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
+{
+    //printf ("DCC chat [%d] requested from '%s' (%s)\n", dccid, nick, addr);
+    eintrag e;
+    e.name = origin;
+    e.inhalt = params[1];
+    writeListen(e);
 
+	//irc_dcc_accept (session, dccid, 0, dcc_recv_callback);
+}
 
 Kommunikater::Kommunikater(Iam _iam)
 {
@@ -45,11 +57,15 @@ Kommunikater::~Kommunikater()
 
     Doc->closeDB();
     delete Doc;
+
+    irc_destroy_session(session);
+    session = NULL;
 }
 
 void Kommunikater::commitServer()
 {
     callbacks.event_connect = event_connect;
+    callbacks.event_channel = event_channel;
 
     session = irc_create_session (&callbacks);
 
@@ -58,8 +74,15 @@ void Kommunikater::commitServer()
 
     irc_connect (session, iam.server, 6667, 0, iam.nick, 0, 0);
 
+
     irc_run (session);
 }
+
+void Kommunikater::writeListen(eintrag e)
+{
+    Doc->writeDB(e);
+}
+
 
 
 

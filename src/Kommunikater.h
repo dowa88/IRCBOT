@@ -45,12 +45,15 @@ class Kommunikater {
 
     void chanceServerChanelNick(Iam _iam);
 
-    void sendMassage(eintrag e);
-    void readListen(eintrag e);
-
     private:
-    SQL* Kom;
-    SQL* Doc;
+    static void sendMassage();
+    static void writeListen(eintrag e);
+
+    static void event_connect (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count);
+    static void event_channel (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count);
+
+    static SQL* Kom;
+    static SQL* Doc;
     irc_session_t * session;
     irc_callbacks_t	callbacks;
     Iam iam;
