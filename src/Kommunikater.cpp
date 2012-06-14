@@ -12,22 +12,51 @@ Beschreibung:
 
 SQL* Kommunikater::Kom = new SQL();
 SQL* Kommunikater::Doc = new SQL();
+status Kommunikater::state;
+
+THREAD_FUNCTION(myThread)
+{
+    status * state = (status*) arg;
+
+	while (!state->stop)
+	{
+		printf("HI\n");
+
+		if(state->send)
+		{
+		    state->send = false;
+		}
+
+		sleep(2);
+	}
+    irc_cmd_quit(state->session, NULL);
+}
 
 void Kommunikater::event_connect (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
 {
 	irc_ctx_t * ctx = (irc_ctx_t *) irc_get_ctx (session);
 	irc_cmd_join (session, ctx->channel, 0);
+
+	thread_id_t tid;
+	CREATE_THREAD(&tid, myThread, &state);
 }
 
 void Kommunikater::event_channel (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
 {
-    //printf ("DCC chat [%d] requested from '%s' (%s)\n", dccid, nick, addr);
     eintrag e;
     e.name = origin;
     e.inhalt = params[1];
     writeListen(e);
+}
 
-	//irc_dcc_accept (session, dccid, 0, dcc_recv_callback);
+void Kommunikater::stop()
+{
+    state.stop = true;
+}
+
+void Kommunikater::sendMassageLOG(std::string fromtime, std::string totime, std::string fromdate, std::string todate)
+{
+
 }
 
 Kommunikater::Kommunikater(Iam _iam)
@@ -40,6 +69,9 @@ Kommunikater::Kommunikater(Iam _iam)
     Doc->createTable("Mitschrift");
     session = NULL;
     iam = _iam;
+
+    state.stop = false;
+    state.send = false;
 
     ctx.channel = iam.channel;
     ctx.nick = iam.nick;
@@ -60,6 +92,7 @@ Kommunikater::~Kommunikater()
 
     irc_destroy_session(session);
     session = NULL;
+    state.session = NULL;
 }
 
 void Kommunikater::commitServer()
@@ -74,7 +107,7 @@ void Kommunikater::commitServer()
 
     irc_connect (session, iam.server, 6667, 0, iam.nick, 0, 0);
 
-
+    state.session = session;
     irc_run (session);
 }
 

@@ -18,6 +18,7 @@ In diesem teil des Programms ist alles enthalten um auf eine Datenbank zuzugreif
 #include <string>
 #include <vector>
 #include <sstream>
+#include <stdlib.h>
 
 struct eintrag
 {
@@ -34,9 +35,10 @@ class SQL {
 
     void openDB(const char name[]);
     void createTable(std::string name);
+    int search(std::string name);
     void deleteDB();
     std::vector<eintrag> readDB();
-    std::vector<eintrag> readFromTo(std::string fromdate, std::string fromtime, std::string todate, std::string totime);
+    std::vector<eintrag> readFromTo(std::string fromtime, std::string totime, std::string fromdate, std::string todate);
     std::vector<eintrag> readFromToday(std::string fromtime, std::string totime);
     void writeDB(eintrag e);
     void closeDB();

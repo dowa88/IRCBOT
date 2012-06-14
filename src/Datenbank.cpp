@@ -57,6 +57,22 @@ void SQL::writeDB(eintrag e)
     sqlite3_exec(db, s.c_str(), NULL, NULL, NULL);
 }
 
+int SQL::search(std::string name)
+{
+    sqlite3_stmt *stmt;
+    std::string s = "SELECT Inhal FROM " + tablename +"WHERE Name = " + name;
+    sqlite3_prepare_v2(db, s.c_str(), -1, &stmt, NULL);
+    int i;
+
+    if(sqlite3_step(stmt) != SQLITE_DONE)
+    {
+        std::ostringstream isst;
+        isst << sqlite3_column_text(stmt, 0);
+        i = atoi( isst.str().c_str() );
+    }
+    return i;
+}
+
 std::vector<eintrag> SQL::readDB()
 {
     std::vector<eintrag> e;
@@ -95,7 +111,7 @@ std::vector<eintrag> SQL::readDB()
     return e;
 }
 
-std::vector<eintrag> SQL::readFromTo(std::string fromdate, std::string fromtime, std::string todate, std::string totime)
+std::vector<eintrag> SQL::readFromTo(std::string fromtime, std::string totime, std::string fromdate, std::string todate)
 {
      std::vector<eintrag> e;
 

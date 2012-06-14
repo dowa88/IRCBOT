@@ -20,6 +20,11 @@ Dieser teil wählt sich im Server ein und gibt nachrichten nach ausen und hört 
 #include <string.h>
 #include "Datenbank.h"
 #include <string>
+#include <stdbool.h>
+
+#define CREATE_THREAD(id,func,param)	(pthread_create (id, 0, func, (void *) param) != 0)
+#define THREAD_FUNCTION(funcname)		static void * funcname (void * arg)
+#define thread_id_t		pthread_t
 
 struct Iam
 {
@@ -35,6 +40,13 @@ typedef struct
 
 } irc_ctx_t;
 
+typedef struct
+{
+	bool stop;
+	bool send;
+	irc_session_t * session;
+}status;
+
 
 class Kommunikater {
     public:
@@ -43,10 +55,15 @@ class Kommunikater {
 
     void commitServer();
 
-    void chanceServerChanelNick(Iam _iam);
+    void sendMassageLOG(std::string fromtime, std::string totime, std::string fromdate, std::string todate);
+    void sendMassageLOG(std::string fromtime, std::string totime);
+    void sendMassageLOG();
+
+    //void chanceServerChanelNick(Iam _iam);
+
+    void stop();
 
     private:
-    static void sendMassage();
     static void writeListen(eintrag e);
 
     static void event_connect (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count);
@@ -54,6 +71,7 @@ class Kommunikater {
 
     static SQL* Kom;
     static SQL* Doc;
+    static status state;
     irc_session_t * session;
     irc_callbacks_t	callbacks;
     Iam iam;
