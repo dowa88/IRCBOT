@@ -5,5 +5,23 @@ Interpreter.h
 Autor: Dominic Wanner
 
 Beschreibung:
+--------------
+Diese Klasse Schaut ob es sich bei der eingabe um einen Befehl handelt
 */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#ifndef _Interpreter_H_
+#define _Interpreter_H_
+
+#include "Datenbank.h"
+
+class Interpreter {
+    public:
+    Interpreter();
+    ~Interpreter();
+
+    int searchBF(char* s);
+};
+
+#endif
+
