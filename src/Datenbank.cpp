@@ -60,14 +60,15 @@ void SQL::writeDB(eintrag e)
 int SQL::search(std::string name)
 {
     sqlite3_stmt *stmt;
-    std::string s = "SELECT Inhal FROM " + tablename +"WHERE Name = " + name;
+    std::string s = "SELECT Inhalt FROM " + tablename + " WHERE name = '" + name +"'";
     sqlite3_prepare_v2(db, s.c_str(), -1, &stmt, NULL);
-    int i;
+    int i = 0;
 
     if(sqlite3_step(stmt) != SQLITE_DONE)
     {
         std::ostringstream isst;
         isst << sqlite3_column_text(stmt, 0);
+        printf("%s\n", isst.str().c_str() );
         i = atoi( isst.str().c_str() );
     }
     return i;

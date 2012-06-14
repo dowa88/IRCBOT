@@ -14,13 +14,18 @@ Diese Klasse Schaut ob es sich bei der eingabe um einen Befehl handelt
 #define _Interpreter_H_
 
 #include "Datenbank.h"
+#include <string.h>
+#include <stdio.h>
 
 class Interpreter {
     public:
     Interpreter();
     ~Interpreter();
 
-    int searchBF(char* s);
+    int searchBF(std::string s, std::string name);
+
+    private:
+    SQL *BF;
 };
 
 #endif

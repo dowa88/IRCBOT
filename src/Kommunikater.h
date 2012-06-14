@@ -19,6 +19,7 @@ Dieser teil wählt sich im Server ein und gibt nachrichten nach ausen und hört 
 #include <errno.h>
 #include <string.h>
 #include "Datenbank.h"
+#include "Interpreter.h"
 #include <string>
 #include <stdbool.h>
 
@@ -59,10 +60,6 @@ class Kommunikater {
     void sendMassageLOG(std::string fromtime, std::string totime);
     void sendMassageLOG();
 
-    //void chanceServerChanelNick(Iam _iam);
-
-    void stop();
-
     private:
     static void writeListen(eintrag e);
 
@@ -71,6 +68,7 @@ class Kommunikater {
 
     static SQL* Kom;
     static SQL* Doc;
+    static Interpreter* Inter;
     static status state;
     irc_session_t * session;
     irc_callbacks_t	callbacks;
