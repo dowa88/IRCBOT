@@ -21,14 +21,11 @@ THREAD_FUNCTION(myThread)
 
 	while (!state->stop)
 	{
-		printf("HI\n");
-
 		if(state->send)
 		{
 		    state->send = false;
 		}
 
-		sleep(2);
 	}
     irc_cmd_quit(state->session, NULL);
 }
@@ -39,8 +36,8 @@ Kommunikater::Kommunikater(Iam _iam)
     Doc = new SQL();
     Kom->openDB("../DB/Kom");
     Doc->openDB("../DB/Doc");
-    Doc->deleteDB();
     Doc->createTable("Mitschrift");
+    Doc->deleteDB();
     Kom->createTable("Kommunikation");
     session = NULL;
     iam = _iam;
@@ -88,9 +85,21 @@ void Kommunikater::event_channel (irc_session_t * session, const char * event, c
     e.name = origin;
     e.inhalt = params[1];
 
-    if(Inter->searchBF(params[1], ctx->nick))
+    int ibf = Inter->searchBF(params[1], ctx->nick);
+
+    if(ibf)
     {
-        state.stop = true;
+        switch(ibf)
+        {
+            case 1:
+            {
+                state.stop = true;
+            }break;
+            case 2:
+            {
+                sendMassageLOG(session);
+            }
+        }
     }
     else
     {
@@ -98,11 +107,30 @@ void Kommunikater::event_channel (irc_session_t * session, const char * event, c
     }
 }
 
-void Kommunikater::sendMassageLOG(std::string fromtime, std::string totime, std::string fromdate, std::string todate)
+void Kommunikater::sendMassageLOG(irc_session_t * session, std::string fromtime, std::string totime, std::string fromdate, std::string todate)
 {
 
 }
 
+void Kommunikater::sendMassageLOG(irc_session_t * session)
+{
+    irc_ctx_t * ctx = (irc_ctx_t *) irc_get_ctx (session);
+
+    std::vector<eintrag> e = Doc->readDB();
+
+    for (std::vector<eintrag>::iterator it = e.begin(); it!=e.end(); ++it)
+    {
+        printf("%s\n", it->name.c_str());
+        printf("%s\n", it->inhalt.c_str());
+        printf("%s\n", it->date.c_str());
+        printf("%s\n", it->time.c_str());
+
+        irc_cmd_msg(session, ctx->channel, it->name.c_str());
+        irc_cmd_msg(session, ctx->channel, it->inhalt.c_str());
+        irc_cmd_msg(session, ctx->channel, it->date.c_str());
+        irc_cmd_msg(session, ctx->channel, it->time.c_str());
+    }
+}
 
 void Kommunikater::commitServer()
 {

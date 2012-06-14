@@ -22,6 +22,7 @@ Dieser teil wählt sich im Server ein und gibt nachrichten nach ausen und hört 
 #include "Interpreter.h"
 #include <string>
 #include <stdbool.h>
+#include <vector>
 
 #define CREATE_THREAD(id,func,param)	(pthread_create (id, 0, func, (void *) param) != 0)
 #define THREAD_FUNCTION(funcname)		static void * funcname (void * arg)
@@ -56,12 +57,12 @@ class Kommunikater {
 
     void commitServer();
 
-    void sendMassageLOG(std::string fromtime, std::string totime, std::string fromdate, std::string todate);
-    void sendMassageLOG(std::string fromtime, std::string totime);
-    void sendMassageLOG();
-
     private:
     static void writeListen(eintrag e);
+
+    static void sendMassageLOG(irc_session_t * session, std::string fromtime, std::string totime, std::string fromdate, std::string todate);
+    static void sendMassageLOG(irc_session_t * session, std::string fromtime, std::string totime);
+    static void sendMassageLOG(irc_session_t * session);
 
     static void event_connect (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count);
     static void event_channel (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count);

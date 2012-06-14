@@ -33,6 +33,7 @@ void SQL::deleteDB()
 {
     std::string s = "drop table " + tablename;
     sqlite3_exec(db, s.c_str(), NULL, NULL, NULL);
+    this->createTable(tablename);
 }
 
 void SQL::createTable(std::string name)
@@ -71,6 +72,7 @@ int SQL::search(std::string name)
         printf("%s\n", isst.str().c_str() );
         i = atoi( isst.str().c_str() );
     }
+    sqlite3_finalize(stmt);
     return i;
 }
 
