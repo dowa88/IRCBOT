@@ -10,7 +10,6 @@ Beschreibung:
 
 #include "Kommunikater.h"
 
-SQL* Kommunikater::Kom = new SQL();
 SQL* Kommunikater::Doc = new SQL();
 Interpreter* Kommunikater::Inter = new Interpreter();
 status Kommunikater::state;
@@ -32,13 +31,11 @@ THREAD_FUNCTION(myThread)
 
 Kommunikater::Kommunikater(Iam _iam)
 {
-    Kom = new SQL();
     Doc = new SQL();
-    Kom->openDB("../DB/Kom");
     Doc->openDB("../DB/Doc");
     Doc->createTable("Mitschrift");
     Doc->deleteDB();
-    Kom->createTable("Kommunikation");
+
     session = NULL;
     iam = _iam;
 
@@ -57,9 +54,6 @@ Kommunikater::Kommunikater(Iam _iam)
 
 Kommunikater::~Kommunikater()
 {
-    Kom->closeDB();
-    delete Kom;
-
     Doc->closeDB();
     delete Doc;
 
@@ -174,7 +168,8 @@ void Kommunikater::commitServer()
     irc_connect (session, iam.server, 6667, 0, iam.nick, 0, 0);
 
     state.session = session;
-    irc_run (session);
+    if(irc_run (session) && !state.stop)
+        printf ("Could not connect or I/O error");
 }
 
 void Kommunikater::writeListen(eintrag e)

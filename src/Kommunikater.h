@@ -67,7 +67,6 @@ class Kommunikater {
     static void event_connect (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count);
     static void event_channel (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count);
 
-    static SQL* Kom;
     static SQL* Doc;
     static Interpreter* Inter;
     static status state;

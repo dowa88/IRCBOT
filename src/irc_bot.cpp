@@ -8,24 +8,32 @@ Beschreibung:
 */
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <iostream>
-#include "Datenbank.h"
-#include "Kommunikater.h"
+#include "IRCBOT.h"
 #include <unistd.h>
 
 
 
 int main(int argc, char* argv[])
 {
-    SQL *GG = new SQL();
+    if ( argc != 4 )
+	{
+		printf ("Usage: %s <server> <nick> <channel>\n", argv[0]);
+		return 1;
+	}
+
     Iam iam;
-    char s[] = "gti.twice-irc.de";
+    /*char s[] = "gti.twice-irc.de";
     char n[] = "nana";
-    char c[] = "#test";
-    iam.channel= c;
-    iam.nick = n;
-    iam.server = s;
-    Kommunikater* K = new Kommunikater(iam);
-    K->commitServer();
-    delete K;
-    return 1;
+    char c[] = "#test";*/
+    iam.channel= argv[3];
+    iam.nick = argv[2];
+    iam.server = argv[1];
+
+    IRCBOT *bot = new IRCBOT();
+    bot->initBot(iam);
+    bot->startBot();
+    delete bot;
+    bot = NULL;
+
+    return 0;
 }
