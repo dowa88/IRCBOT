@@ -44,6 +44,7 @@ Kommunikater::Kommunikater(Iam _iam)
 
     state.stop = false;
     state.send = false;
+    state.log = true;
 
     ctx.channel = iam.channel;
     ctx.nick = iam.nick;
@@ -84,8 +85,9 @@ void Kommunikater::event_channel (irc_session_t * session, const char * event, c
     eintrag e;
     e.name = origin;
     e.inhalt = params[1];
+    std::string bs;
 
-    int ibf = Inter->searchBF(params[1], ctx->nick);
+    int ibf = Inter->searchBF(params[1], ctx->nick, &bs);
 
     if(ibf)
     {
@@ -98,18 +100,45 @@ void Kommunikater::event_channel (irc_session_t * session, const char * event, c
             case 2:
             {
                 sendMassageLOG(session);
-            }
+            }break;
+            case 3:
+            {
+                state.log = true;
+            }break;
+            case 4:
+            {
+                state.log = false;
+            }break;
+            case 5:
+            {
+                sendMassageLOGFrom(session, bs);
+            }break;
         }
     }
-    else
+    else if(state.log)
     {
         writeListen(e);
     }
 }
 
-void Kommunikater::sendMassageLOG(irc_session_t * session, std::string fromtime, std::string totime, std::string fromdate, std::string todate)
+void Kommunikater::sendMassageLOGFrom(irc_session_t * session, std::string name)
 {
+    irc_ctx_t * ctx = (irc_ctx_t *) irc_get_ctx (session);
 
+    std::vector<eintrag> e = Doc->search(name);
+
+    for (std::vector<eintrag>::iterator it = e.begin(); it!=e.end(); ++it)
+    {
+        printf("%s\n", it->name.c_str());
+        printf("%s\n", it->inhalt.c_str());
+        printf("%s\n", it->date.c_str());
+        printf("%s\n", it->time.c_str());
+
+        irc_cmd_msg(session, ctx->channel, it->name.c_str());
+        irc_cmd_msg(session, ctx->channel, it->inhalt.c_str());
+        irc_cmd_msg(session, ctx->channel, it->date.c_str());
+        irc_cmd_msg(session, ctx->channel, it->time.c_str());
+    }
 }
 
 void Kommunikater::sendMassageLOG(irc_session_t * session)

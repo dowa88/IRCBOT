@@ -22,7 +22,7 @@ class Interpreter {
     Interpreter();
     ~Interpreter();
 
-    int searchBF(std::string s, std::string name);
+    int searchBF(std::string s, std::string name, std::string* bs);
 
     private:
     SQL *BF;

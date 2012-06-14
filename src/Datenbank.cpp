@@ -58,22 +58,40 @@ void SQL::writeDB(eintrag e)
     sqlite3_exec(db, s.c_str(), NULL, NULL, NULL);
 }
 
-int SQL::search(std::string name)
+std::vector<eintrag> SQL::search(std::string name)
 {
+    std::vector<eintrag> e;
     sqlite3_stmt *stmt;
-    std::string s = "SELECT Inhalt FROM " + tablename + " WHERE name = '" + name +"'";
+    std::string s = "SELECT * FROM " + tablename + " WHERE name = '" + name +"'";
     sqlite3_prepare_v2(db, s.c_str(), -1, &stmt, NULL);
     int i = 0;
 
-    if(sqlite3_step(stmt) != SQLITE_DONE)
+    while(sqlite3_step(stmt) != SQLITE_DONE)
     {
-        std::ostringstream isst;
-        isst << sqlite3_column_text(stmt, 0);
-        printf("%s\n", isst.str().c_str() );
-        i = atoi( isst.str().c_str() );
+        std::ostringstream string;
+
+        eintrag a;
+
+        string << sqlite3_column_text(stmt, 0);
+        a.name = string.str();
+        string.str("");
+
+        string << sqlite3_column_text(stmt, 1);
+        a.inhalt = string.str();
+        string.str("");
+
+        string << sqlite3_column_text(stmt, 2);
+        a.date = string.str();
+        string.str("");
+
+        string << sqlite3_column_text(stmt, 3);
+        a.time = string.str();
+        string.str("");
+
+        e.push_back(a);
     }
     sqlite3_finalize(stmt);
-    return i;
+    return e;
 }
 
 std::vector<eintrag> SQL::readDB()

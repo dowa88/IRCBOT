@@ -35,7 +35,7 @@ class SQL {
 
     void openDB(const char name[]);
     void createTable(std::string name);
-    int search(std::string name);
+    std::vector<eintrag> search(std::string name);
     void deleteDB();
     std::vector<eintrag> readDB();
     std::vector<eintrag> readFromTo(std::string fromtime, std::string totime, std::string fromdate, std::string todate);
