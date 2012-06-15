@@ -1,4 +1,16 @@
 README
 
-    ~$ sudo apt-get install sqlite3  
-    ~$ sudo apt-get install libsqlite3-dev  
+Damit Programm läuft muss libirclient in bib entpackt werden, Sqlite3 instaliert sein und
+Doxygen Instaliert sein.
+
+~$ sudo apt-get install sqlite3
+~$ sudo apt-get install doxygen
+
+Danach einfach Make ausführen:
+
+~$ make
+
+Im Ordner src/ befindet sich dann ircBot datei zum ausführen.
+
+~$ cd src/
+~$ ./ircBot "Server URL" "Nickname" "Channel"

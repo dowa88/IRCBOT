@@ -1,11 +1,12 @@
-
-
 SUBDIRS = src
+
 
 all:
 	for subdir in $(SUBDIRS); do \
 		$(MAKE) -C $$subdir || exit 1; \
 	done
+	
+	test -d DB || mkdir DB
 
 clean:
 	-for subdir in $(SUBDIRS); do \
@@ -16,3 +17,4 @@ clean:
 doc:
 	doxygen Doxygen
 	rm -rf latex
+

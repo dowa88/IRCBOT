@@ -1,0 +1,103 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+Kommunikater.cpp
+
+Autor: Dominic Wanner
+
+Beschreibung:
+*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#include "Kommunikater.h"
+
+SQL* Kommunikater::Kom = new SQL();
+SQL* Kommunikater::Doc = new SQL();
+status Kommunikater::state;
+
+THREAD_FUNCTION(myThread)
+{
+
+	while (!state.stop)
+	{
+		printf("HI\n");
+
+		sleep(200);
+	}
+
+}
+
+void Kommunikater::event_connect (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
+{
+	irc_ctx_t * ctx = (irc_ctx_t *) irc_get_ctx (session);
+	irc_cmd_join (session, ctx->channel, 0);
+
+	thread_id_t tid;
+	CREATE_THREAD(&tid, myThread, &state);
+}
+
+void Kommunikater::event_channel (irc_session_t * session, const char * event, const char * origin, const char ** params, unsigned int count)
+{
+    eintrag e;
+    e.name = origin;
+    e.inhalt = params[1];
+    writeListen(e);
+}
+
+Kommunikater::Kommunikater(Iam _iam)
+{
+    Kom = new SQL();
+    Doc = new SQL();
+    Kom->openDB("../DB/Kom");
+    Doc->openDB("../DB/Doc");
+    Doc->deleteDB();
+    Doc->createTable("Mitschrift");
+    session = NULL;
+    iam = _iam;
+
+    state.stop = false
+
+    ctx.channel = iam.channel;
+    ctx.nick = iam.nick;
+
+    memset (&callbacks, 0, sizeof(callbacks));
+
+    port = 6667;
+
+}
+
+Kommunikater::~Kommunikater()
+{
+    Kom->closeDB();
+    delete Kom;
+
+    Doc->closeDB();
+    delete Doc;
+
+    irc_destroy_session(session);
+    session = NULL;
+}
+
+void Kommunikater::commitServer()
+{
+    callbacks.event_connect = event_connect;
+    callbacks.event_channel = event_channel;
+
+    session = irc_create_session (&callbacks);
+
+    irc_set_ctx (session, &ctx);
+	irc_option_set (session, LIBIRC_OPTION_STRIPNICKS);
+
+    irc_connect (session, iam.server, 6667, 0, iam.nick, 0, 0);
+
+
+    irc_run (session);
+}
+
+void Kommunikater::writeListen(eintrag e)
+{
+    Doc->writeDB(e);
+}
+
+
+
+

@@ -20,10 +20,6 @@ THREAD_FUNCTION(myThread)
 
 	while (!state->stop)
 	{
-		if(state->send)
-		{
-		    state->send = false;
-		}
 
 	}
     irc_cmd_quit(state->session, NULL);
@@ -40,7 +36,6 @@ Kommunikater::Kommunikater(Iam _iam)
     iam = _iam;
 
     state.stop = false;
-    state.send = false;
     state.log = true;
 
     ctx.channel = iam.channel;
