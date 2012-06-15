@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>IRC_BOT: IRCBOT</title>
+<title>IRC_BOT: Member List</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -46,8 +46,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -67,26 +67,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
+    </ul>
+  </div>
 </div>
 <div class="header">
   <div class="headertitle">
-<div class="title"><a class="el" href="classIRCBOT.html" title="Diese Klasse ist der Bot.">IRCBOT</a> </div>  </div>
+<div class="title">SQL Member List</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><dl class="author"><dt><b>Author:</b></dt><dd>Dominic Wanner</dd></dl>
-<p>Dies ist ein <a class="el" href="classIRCBOT.html" title="Diese Klasse ist der Bot.">IRCBOT</a> denn man über eingaben in den Channel steuern kann. <br/>
-&gt; Befehle werden wie folgt gesenndet:<br/>
- BOTNAME: BEFEHL "ZUSATZ"<br/>
-<br/>
- Es gibt folgende Befehle:<br/>
-<br/>
- LOG -&gt; gibt alle Log einsträge aus<br/>
- Start LOG -&gt; startet Log führung (standart mässig an)<br/>
- Stop LOG -&gt; stop Log führung<br/>
- Last seen "NICKNAME" -&gt; gibt alle Log einträge von NICKNAME aus<br/>
- Stop -&gt; Stopt den BOT und beendet ihn<br/>
- </p>
-</div></div><!-- contents -->
+This is the complete list of members for <a class="el" href="classSQL.html">SQL</a>, including all inherited members.<table>
+  <tr class="memlist"><td><a class="el" href="classSQL.html#a8c9cd4df0075e206c262a3fd9e5b5b9c">closeDB</a>()</td><td><a class="el" href="classSQL.html">SQL</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classSQL.html#a6866e844fde29db8f086caac0ade9d3e">createTable</a>(std::string name)</td><td><a class="el" href="classSQL.html">SQL</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classSQL.html#ab4eb1456c40d46348ad8af25b1f1b832">deleteDB</a>()</td><td><a class="el" href="classSQL.html">SQL</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classSQL.html#a415575721f2281b4bc288faa73ce6011">openDB</a>(const char name[])</td><td><a class="el" href="classSQL.html">SQL</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classSQL.html#ae0e1ee968392140fc06d1855e5934bd0">readDB</a>()</td><td><a class="el" href="classSQL.html">SQL</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classSQL.html#ae0d3ae1e4dce91bc7bcad61114337021">readFromTo</a>(std::string fromtime, std::string totime, std::string fromdate, std::string todate)</td><td><a class="el" href="classSQL.html">SQL</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classSQL.html#a2906cc9a78de991b6f8d1ae6cf947e7a">readFromToday</a>(std::string fromtime, std::string totime)</td><td><a class="el" href="classSQL.html">SQL</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classSQL.html#a26f50151169012d6285b981bd4323788">search</a>(std::string name)</td><td><a class="el" href="classSQL.html">SQL</a></td><td></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>SQL</b>() (defined in <a class="el" href="classSQL.html">SQL</a>)</td><td><a class="el" href="classSQL.html">SQL</a></td><td></td></tr>
+  <tr class="memlist"><td><a class="el" href="classSQL.html#aae82ba9a7777686b390f18867a5026bc">writeDB</a>(eintrag e)</td><td><a class="el" href="classSQL.html">SQL</a></td><td></td></tr>
+  <tr bgcolor="#f0f0f0"><td><b>~SQL</b>() (defined in <a class="el" href="classSQL.html">SQL</a>)</td><td><a class="el" href="classSQL.html">SQL</a></td><td></td></tr>
+</table></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>IRC_BOT: IRCBOT</title>
+<title>IRC_BOT: src/IRCBOT.h Source File</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -46,9 +46,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -67,26 +67,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+    </ul>
+  </div>
 </div>
 <div class="header">
   <div class="headertitle">
-<div class="title"><a class="el" href="classIRCBOT.html" title="Diese Klasse ist der Bot.">IRCBOT</a> </div>  </div>
+<div class="title">src/IRCBOT.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><dl class="author"><dt><b>Author:</b></dt><dd>Dominic Wanner</dd></dl>
-<p>Dies ist ein <a class="el" href="classIRCBOT.html" title="Diese Klasse ist der Bot.">IRCBOT</a> denn man über eingaben in den Channel steuern kann. <br/>
-&gt; Befehle werden wie folgt gesenndet:<br/>
- BOTNAME: BEFEHL "ZUSATZ"<br/>
-<br/>
- Es gibt folgende Befehle:<br/>
-<br/>
- LOG -&gt; gibt alle Log einsträge aus<br/>
- Start LOG -&gt; startet Log führung (standart mässig an)<br/>
- Stop LOG -&gt; stop Log führung<br/>
- Last seen "NICKNAME" -&gt; gibt alle Log einträge von NICKNAME aus<br/>
- Stop -&gt; Stopt den BOT und beendet ihn<br/>
- </p>
-</div></div><!-- contents -->
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00002"></a>00002 <span class="comment">/*</span>
+<a name="l00003"></a>00003 <span class="comment">IRCBOT.h</span>
+<a name="l00004"></a>00004 <span class="comment"></span>
+<a name="l00005"></a>00005 <span class="comment">Autor: Dominic Wanner</span>
+<a name="l00006"></a>00006 <span class="comment"></span>
+<a name="l00007"></a>00007 <span class="comment">Beschreibung:</span>
+<a name="l00008"></a>00008 <span class="comment">-------------</span>
+<a name="l00009"></a>00009 <span class="comment"></span>
+<a name="l00010"></a>00010 <span class="comment">*/</span>
+<a name="l00012"></a>00012 
+<a name="l00037"></a>00037 <span class="preprocessor">#ifndef _IRCBOT_H_</span>
+<a name="l00038"></a>00038 <span class="preprocessor"></span><span class="preprocessor">#define _IRCBOT_H_</span>
+<a name="l00039"></a>00039 <span class="preprocessor"></span>
+<a name="l00040"></a>00040 <span class="preprocessor">#include &quot;Kommunikater.h&quot;</span>
+<a name="l00041"></a>00041 
+<a name="l00042"></a><a class="code" href="classIRCBOT.html">00042</a> <span class="keyword">class </span><a class="code" href="classIRCBOT.html" title="Diese Klasse ist der Bot.">IRCBOT</a>{
+<a name="l00043"></a>00043     <span class="keyword">public</span>:
+<a name="l00044"></a>00044     <a class="code" href="classIRCBOT.html" title="Diese Klasse ist der Bot.">IRCBOT</a>();
+<a name="l00045"></a>00045     ~<a class="code" href="classIRCBOT.html" title="Diese Klasse ist der Bot.">IRCBOT</a>();
+<a name="l00046"></a>00046 
+<a name="l00053"></a>00053     <span class="keywordtype">void</span> <a class="code" href="classIRCBOT.html#aa3905a0ab4b6987f87aa45a859badac0" title="initBot() angebe von Serverinformationen">initBot</a>(<a class="code" href="structIam.html">Iam</a> _iam);
+<a name="l00059"></a>00059     <span class="keywordtype">void</span> <a class="code" href="classIRCBOT.html#a9de9d5e1a5dcbb82669cea8d7de0d5cb" title="startBot() Startet den Bot">startBot</a>();
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061     <span class="keyword">private</span>:
+<a name="l00066"></a>00066     <a class="code" href="classKommunikater.html" title="Diese Klasse kümmert sich um die Kommunikation mit dem IRC Server.">Kommunikater</a>* Kom;
+<a name="l00067"></a>00067 };
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 <span class="preprocessor">#endif</span>
+</pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"

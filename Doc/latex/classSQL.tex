@@ -1,0 +1,188 @@
+\hypertarget{classSQL}{\section{\-S\-Q\-L \-Class \-Reference}
+\label{classSQL}\index{\-S\-Q\-L@{\-S\-Q\-L}}
+}
+
+
+\-Diese \-Klasse ist eine \-Datenbank.  
+
+
+
+
+{\ttfamily \#include $<$\-Datenbank.\-h$>$}
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classSQL_a415575721f2281b4bc288faa73ce6011}{open\-D\-B} (const char name\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em \hyperlink{classSQL_a415575721f2281b4bc288faa73ce6011}{open\-D\-B()} Öffnet oder erstellt \-Datenbank \end{DoxyCompactList}\item 
+void \hyperlink{classSQL_a6866e844fde29db8f086caac0ade9d3e}{create\-Table} (std\-::string name)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classSQL_a6866e844fde29db8f086caac0ade9d3e}{create\-Table()} Öffnet oder erstellt \-Tabelle \end{DoxyCompactList}\item 
+std\-::vector$<$ \hyperlink{structeintrag}{eintrag} $>$ \hyperlink{classSQL_a26f50151169012d6285b981bd4323788}{search} (std\-::string name)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classSQL_a26f50151169012d6285b981bd4323788}{search()} \-Sucht in der \-Datenbank nach name \end{DoxyCompactList}\item 
+void \hyperlink{classSQL_ab4eb1456c40d46348ad8af25b1f1b832}{delete\-D\-B} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classSQL_ab4eb1456c40d46348ad8af25b1f1b832}{delete\-D\-B()} \-Löscht \-Datenbank inhalt \end{DoxyCompactList}\item 
+std\-::vector$<$ \hyperlink{structeintrag}{eintrag} $>$ \hyperlink{classSQL_ae0e1ee968392140fc06d1855e5934bd0}{read\-D\-B} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classSQL_ae0e1ee968392140fc06d1855e5934bd0}{read\-D\-B()} liest alle eintrage der \-Datenbank \end{DoxyCompactList}\item 
+std\-::vector$<$ \hyperlink{structeintrag}{eintrag} $>$ \hyperlink{classSQL_ae0d3ae1e4dce91bc7bcad61114337021}{read\-From\-To} (std\-::string fromtime, std\-::string totime, std\-::string fromdate, std\-::string todate)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classSQL_ae0d3ae1e4dce91bc7bcad61114337021}{read\-From\-To()} liest \-Datum und \-Zeit abhangig eintrage aus der \-Datenbank \end{DoxyCompactList}\item 
+std\-::vector$<$ \hyperlink{structeintrag}{eintrag} $>$ \hyperlink{classSQL_a2906cc9a78de991b6f8d1ae6cf947e7a}{read\-From\-Today} (std\-::string fromtime, std\-::string totime)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classSQL_a2906cc9a78de991b6f8d1ae6cf947e7a}{read\-From\-Today()} liest \-Zeit abhängig alle \-Einträge von \-Heute \end{DoxyCompactList}\item 
+void \hyperlink{classSQL_aae82ba9a7777686b390f18867a5026bc}{write\-D\-B} (\hyperlink{structeintrag}{eintrag} e)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classSQL_aae82ba9a7777686b390f18867a5026bc}{write\-D\-B()} \-Schreibt einen \-Datenbank eintrag \end{DoxyCompactList}\item 
+void \hyperlink{classSQL_a8c9cd4df0075e206c262a3fd9e5b5b9c}{close\-D\-B} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classSQL_a8c9cd4df0075e206c262a3fd9e5b5b9c}{close\-D\-B()} schliesst \-Datenbank \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Diese \-Klasse ist eine \-Datenbank. 
+
+\-Hier bei handelt es sich um einen \-Datenbank \-Klasse die mit \-S\-Q\-Lite arbeitet. \-Die \-Tabellen der \-Datenbank werden immer nach dem gleichen \-Schema erzeugt. \-Jede \-Tabele hat ein \-Splate name, \-Inhalt, \-Date und \-Uhr. \-Wobei \-Date und \-Uhr automatisch gefühlt beim erstellen mit \-Inhalt gefühlt werden. 
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classSQL_a8c9cd4df0075e206c262a3fd9e5b5b9c}{\index{\-S\-Q\-L@{\-S\-Q\-L}!close\-D\-B@{close\-D\-B}}
+\index{close\-D\-B@{close\-D\-B}!SQL@{\-S\-Q\-L}}
+\subsubsection[{close\-D\-B}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-S\-Q\-L\-::close\-D\-B} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSQL_a8c9cd4df0075e206c262a3fd9e5b5b9c}
+
+
+\hyperlink{classSQL_a8c9cd4df0075e206c262a3fd9e5b5b9c}{close\-D\-B()} schliesst \-Datenbank 
+
+mit dieser \-Funktion wird die \-Datenbank geschlossen. \hypertarget{classSQL_a6866e844fde29db8f086caac0ade9d3e}{\index{\-S\-Q\-L@{\-S\-Q\-L}!create\-Table@{create\-Table}}
+\index{create\-Table@{create\-Table}!SQL@{\-S\-Q\-L}}
+\subsubsection[{create\-Table}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-S\-Q\-L\-::create\-Table} (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{name}
+\end{DoxyParamCaption}
+)}}\label{classSQL_a6866e844fde29db8f086caac0ade9d3e}
+
+
+\hyperlink{classSQL_a6866e844fde29db8f086caac0ade9d3e}{create\-Table()} Öffnet oder erstellt \-Tabelle 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em name} & \-Name der \-Tabelle\\
+\hline
+\end{DoxyParams}
+\-Diese \-Funktion öffnet oder erstellt eine neue \-Tabelle in der \-Datenbank, mit dem \-Namen der in name übergeben wird. \hypertarget{classSQL_ab4eb1456c40d46348ad8af25b1f1b832}{\index{\-S\-Q\-L@{\-S\-Q\-L}!delete\-D\-B@{delete\-D\-B}}
+\index{delete\-D\-B@{delete\-D\-B}!SQL@{\-S\-Q\-L}}
+\subsubsection[{delete\-D\-B}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-S\-Q\-L\-::delete\-D\-B} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSQL_ab4eb1456c40d46348ad8af25b1f1b832}
+
+
+\hyperlink{classSQL_ab4eb1456c40d46348ad8af25b1f1b832}{delete\-D\-B()} \-Löscht \-Datenbank inhalt 
+
+\-Leert die komplete \-Datenbank \hypertarget{classSQL_a415575721f2281b4bc288faa73ce6011}{\index{\-S\-Q\-L@{\-S\-Q\-L}!open\-D\-B@{open\-D\-B}}
+\index{open\-D\-B@{open\-D\-B}!SQL@{\-S\-Q\-L}}
+\subsubsection[{open\-D\-B}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-S\-Q\-L\-::open\-D\-B} (
+\begin{DoxyParamCaption}
+\item[{const char}]{name\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{classSQL_a415575721f2281b4bc288faa73ce6011}
+
+
+\hyperlink{classSQL_a415575721f2281b4bc288faa73ce6011}{open\-D\-B()} Öffnet oder erstellt \-Datenbank 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em name} & \-Name der \-Datenbank\\
+\hline
+\end{DoxyParams}
+\-Diese \-Funktion öffnet oder erstellt eine neue \-Datenbank, mit dem \-Namen der in name übergeben wird. \hypertarget{classSQL_ae0e1ee968392140fc06d1855e5934bd0}{\index{\-S\-Q\-L@{\-S\-Q\-L}!read\-D\-B@{read\-D\-B}}
+\index{read\-D\-B@{read\-D\-B}!SQL@{\-S\-Q\-L}}
+\subsubsection[{read\-D\-B}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ {\bf eintrag} $>$ {\bf \-S\-Q\-L\-::read\-D\-B} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSQL_ae0e1ee968392140fc06d1855e5934bd0}
+
+
+\hyperlink{classSQL_ae0e1ee968392140fc06d1855e5934bd0}{read\-D\-B()} liest alle eintrage der \-Datenbank 
+
+\-Diese \-Funktion gibt alle \-Datenbank eintrage als std\-::vector$<$eintrag$>$ zurück \hypertarget{classSQL_ae0d3ae1e4dce91bc7bcad61114337021}{\index{\-S\-Q\-L@{\-S\-Q\-L}!read\-From\-To@{read\-From\-To}}
+\index{read\-From\-To@{read\-From\-To}!SQL@{\-S\-Q\-L}}
+\subsubsection[{read\-From\-To}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ {\bf eintrag} $>$ {\bf \-S\-Q\-L\-::read\-From\-To} (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{fromtime, }
+\item[{std\-::string}]{totime, }
+\item[{std\-::string}]{fromdate, }
+\item[{std\-::string}]{todate}
+\end{DoxyParamCaption}
+)}}\label{classSQL_ae0d3ae1e4dce91bc7bcad61114337021}
+
+
+\hyperlink{classSQL_ae0d3ae1e4dce91bc7bcad61114337021}{read\-From\-To()} liest \-Datum und \-Zeit abhangig eintrage aus der \-Datenbank 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em fromtime} & die \-Zeit von \\
+\hline
+{\em totime} & die \-Zeit bis \\
+\hline
+{\em fromdate} & das \-Datum von \\
+\hline
+{\em todate} & das \-Datum bis\\
+\hline
+\end{DoxyParams}
+\-Diese \-Funktion gibt alle eintrage von einen \-Bestimmten \-Zeit abschnit als std\-::vector$<$eintrag$>$ aus. \-V\-O\-R\-S\-I\-C\-H\-T \-F\-U\-N\-K\-T\-I\-O\-N \-W\-I\-R\-D \-I\-M \hyperlink{classIRCBOT}{\-I\-R\-C\-B\-O\-T} \-N\-O\-C\-H \-N\-I\-C\-H\-T \-V\-E\-R\-W\-E\-N\-D\-E\-T! \hypertarget{classSQL_a2906cc9a78de991b6f8d1ae6cf947e7a}{\index{\-S\-Q\-L@{\-S\-Q\-L}!read\-From\-Today@{read\-From\-Today}}
+\index{read\-From\-Today@{read\-From\-Today}!SQL@{\-S\-Q\-L}}
+\subsubsection[{read\-From\-Today}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ {\bf eintrag} $>$ {\bf \-S\-Q\-L\-::read\-From\-Today} (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{fromtime, }
+\item[{std\-::string}]{totime}
+\end{DoxyParamCaption}
+)}}\label{classSQL_a2906cc9a78de991b6f8d1ae6cf947e7a}
+
+
+\hyperlink{classSQL_a2906cc9a78de991b6f8d1ae6cf947e7a}{read\-From\-Today()} liest \-Zeit abhängig alle \-Einträge von \-Heute 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em fromtime} & die \-Zeit von \\
+\hline
+{\em totime} & die \-Zeit bis\\
+\hline
+\end{DoxyParams}
+\-Diese \-Funktion gibt alle \-Einträge von einen \-Bestimmten \-Zeit abschnitt vom \-Akktuellen \-Tag als std\-::vector$<$eintrag$>$ aus. \-V\-O\-R\-S\-I\-C\-H\-T \-F\-U\-N\-K\-T\-I\-O\-N \-W\-I\-R\-D \-I\-M \hyperlink{classIRCBOT}{\-I\-R\-C\-B\-O\-T} \-N\-O\-C\-H \-N\-I\-C\-H\-T \-V\-E\-R\-W\-E\-N\-D\-E\-T! \hypertarget{classSQL_a26f50151169012d6285b981bd4323788}{\index{\-S\-Q\-L@{\-S\-Q\-L}!search@{search}}
+\index{search@{search}!SQL@{\-S\-Q\-L}}
+\subsubsection[{search}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ {\bf eintrag} $>$ {\bf \-S\-Q\-L\-::search} (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{name}
+\end{DoxyParamCaption}
+)}}\label{classSQL_a26f50151169012d6285b981bd4323788}
+
+
+\hyperlink{classSQL_a26f50151169012d6285b981bd4323788}{search()} \-Sucht in der \-Datenbank nach name 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em name} & \-Name nach dem gesucht wird\\
+\hline
+\end{DoxyParams}
+\-Diese \-Funktion gibt alle \-Datenbank einträge in einen std\-::vector$<$eintrag$>$ zurück, die in der \-Spalte name den in parameter stehenden name haben. \hypertarget{classSQL_aae82ba9a7777686b390f18867a5026bc}{\index{\-S\-Q\-L@{\-S\-Q\-L}!write\-D\-B@{write\-D\-B}}
+\index{write\-D\-B@{write\-D\-B}!SQL@{\-S\-Q\-L}}
+\subsubsection[{write\-D\-B}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-S\-Q\-L\-::write\-D\-B} (
+\begin{DoxyParamCaption}
+\item[{{\bf eintrag}}]{e}
+\end{DoxyParamCaption}
+)}}\label{classSQL_aae82ba9a7777686b390f18867a5026bc}
+
+
+\hyperlink{classSQL_aae82ba9a7777686b390f18867a5026bc}{write\-D\-B()} \-Schreibt einen \-Datenbank eintrag 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em e} & beinhaltet zu schreibende \-Daten\\
+\hline
+\end{DoxyParams}
+mit dieser \-Funktion wird in die \-Datenbank geschrieben. 
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+src/\-Datenbank.\-h\item 
+src/\-Datenbank.\-cpp\end{DoxyCompactItemize}

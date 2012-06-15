@@ -1,0 +1,63 @@
+\hypertarget{classKommunikater}{\section{\-Kommunikater \-Class \-Reference}
+\label{classKommunikater}\index{\-Kommunikater@{\-Kommunikater}}
+}
+
+
+\-Diese \-Klasse kümmert sich um die \-Kommunikation mit dem \-I\-R\-C \-Server.  
+
+
+
+
+{\ttfamily \#include $<$\-Kommunikater.\-h$>$}
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classKommunikater_acc1fbba41064320a938b1343f6e036db}{\-Kommunikater} (\hyperlink{structIam}{\-Iam} \-\_\-iam)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classKommunikater_acc1fbba41064320a938b1343f6e036db}{\-Kommunikater()} \-Instaliert \hyperlink{classKommunikater}{\-Kommunikater} benötigt \hyperlink{structIam}{\-Iam} struct. \end{DoxyCompactList}\item 
+void \hyperlink{classKommunikater_a731ee5201102af91897a8cda45b71eac}{commit\-Server} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classKommunikater_a731ee5201102af91897a8cda45b71eac}{commit\-Server()} verbindet mit \-Server und \-Startet irc\-\_\-run \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Diese \-Klasse kümmert sich um die \-Kommunikation mit dem \-I\-R\-C \-Server. 
+
+\-Der \hyperlink{classKommunikater}{\-Kommunikater} kümmert sich um alle arbeitsteile der \-Kommunikation. \-Er verbindet den \-Bot mit dem \-Server und \-Channel, speichert die \-Log in die \-Datenbank und gibt \-Befehle an den \hyperlink{classInterpreter}{\-Interpreter} weiter. 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classKommunikater_acc1fbba41064320a938b1343f6e036db}{\index{\-Kommunikater@{\-Kommunikater}!\-Kommunikater@{\-Kommunikater}}
+\index{\-Kommunikater@{\-Kommunikater}!Kommunikater@{\-Kommunikater}}
+\subsubsection[{\-Kommunikater}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Kommunikater\-::\-Kommunikater} (
+\begin{DoxyParamCaption}
+\item[{{\bf \-Iam}}]{\-\_\-iam}
+\end{DoxyParamCaption}
+)}}\label{classKommunikater_acc1fbba41064320a938b1343f6e036db}
+
+
+\hyperlink{classKommunikater_acc1fbba41064320a938b1343f6e036db}{\-Kommunikater()} \-Instaliert \hyperlink{classKommunikater}{\-Kommunikater} benötigt \hyperlink{structIam}{\-Iam} struct. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-\_\-iam} & ist das beinhaltet jeweils einen string zu \-Server, \-Channel und \-Nickname\\
+\hline
+\end{DoxyParams}
+\hyperlink{classKommunikater}{\-Kommunikater} wird erstellt benötigt dazu ein \hyperlink{structIam}{\-Iam} struct für die \-Verbindungsdaten. \-Zudem wird eine neue \-Log \-Datenbank erstellt (alte \-Datenbank wird gelöscht) 
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classKommunikater_a731ee5201102af91897a8cda45b71eac}{\index{\-Kommunikater@{\-Kommunikater}!commit\-Server@{commit\-Server}}
+\index{commit\-Server@{commit\-Server}!Kommunikater@{\-Kommunikater}}
+\subsubsection[{commit\-Server}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Kommunikater\-::commit\-Server} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classKommunikater_a731ee5201102af91897a8cda45b71eac}
+
+
+\hyperlink{classKommunikater_a731ee5201102af91897a8cda45b71eac}{commit\-Server()} verbindet mit \-Server und \-Startet irc\-\_\-run 
+
+\-Startet die \-Verbindung und die irc\-\_\-run \-Schleife. 
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+src/\-Kommunikater.\-h\item 
+src/\-Kommunikater.\-cpp\end{DoxyCompactItemize}

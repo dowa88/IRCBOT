@@ -1,0 +1,51 @@
+\hypertarget{classInterpreter}{\section{\-Interpreter \-Class \-Reference}
+\label{classInterpreter}\index{\-Interpreter@{\-Interpreter}}
+}
+
+
+\-Diese \-Klasse \-Interpritiert \-Behfele.  
+
+
+
+
+{\ttfamily \#include $<$\-Interpreter.\-h$>$}
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classInterpreter_a1adb849ed4720b61dcee870c3e383a8a}{search\-B\-F} (std\-::string s, std\-::string name, std\-::string $\ast$bs)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classInterpreter_a1adb849ed4720b61dcee870c3e383a8a}{search\-B\-F()} \-Sucht in \-Datenbank nach \-Befehl \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Diese \-Klasse \-Interpritiert \-Behfele. 
+
+\-Der \hyperlink{classInterpreter}{\-Interpreter} schaut ob ein \-Befehl eingeben wurde und gibt einen wert der zum \-Befehl gehört weiter an den \hyperlink{classKommunikater}{\-Kommunikater}. \-Für eine einfache erweiterung beinhaltet er eine \-Datenbank mit \-Befehlen die werweitert werden kann, oder um \-Befehle umzubennen. 
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classInterpreter_a1adb849ed4720b61dcee870c3e383a8a}{\index{\-Interpreter@{\-Interpreter}!search\-B\-F@{search\-B\-F}}
+\index{search\-B\-F@{search\-B\-F}!Interpreter@{\-Interpreter}}
+\subsubsection[{search\-B\-F}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf \-Interpreter\-::search\-B\-F} (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{s, }
+\item[{std\-::string}]{name, }
+\item[{std\-::string $\ast$}]{bs}
+\end{DoxyParamCaption}
+)}}\label{classInterpreter_a1adb849ed4720b61dcee870c3e383a8a}
+
+
+\hyperlink{classInterpreter_a1adb849ed4720b61dcee870c3e383a8a}{search\-B\-F()} \-Sucht in \-Datenbank nach \-Befehl 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em s} & für \-Channel eingabe \\
+\hline
+{\em bs} & \-Falls befehl einen \-Zusatz hatte wird dieser zurück gegeben über diesen string pointer \-Sucht in datenbank nach passenden \-Befehl und gibt \-Befehls wert zurück. \\
+\hline
+\end{DoxyParams}
+
+
+\-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+src/\-Interpreter.\-h\item 
+src/\-Interpreter.\-cpp\end{DoxyCompactItemize}
